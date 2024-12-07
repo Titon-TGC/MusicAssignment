@@ -1,0 +1,13 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://b4i816p3y3cp"]
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_d0t25"]
+resource_name = "PitchShift"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_yalcc"]
+resource_name = "Reverb"
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectPitchShift_d0t25")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectReverb_yalcc")
+bus/0/effect/1/enabled = true

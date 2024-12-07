@@ -8,7 +8,7 @@ extends Sprite2D
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(keybind):
 		sound.play()
-		self.modulate = Color.RED
+		self.texture = load("res://PressedKey.png")
 	
 	if Input.is_action_just_released(keybind):
-		self.modulate = Color.WHITE
+		self.texture = load("res://Key.png")

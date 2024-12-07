@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b72rnl52hl0l3"]
+
+[ext_resource type="Script" path="res://StartMenuButton.gd" id="1_kkapl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 71.0
+offset_top = 83.0
+offset_right = 198.0
+offset_bottom = 104.0
+scale = Vector2(14.96, 14.96)
+text = "VIRTUAL PIANO"
+scroll_active = false
+tab_size = 1
+shortcut_keys_enabled = false
+
+[node name="Button" type="Button" parent="."]
+offset_left = 680.0
+offset_top = 555.0
+offset_right = 803.0
+offset_bottom = 598.0
+scale = Vector2(4.2, 4.2)
+text = "START PIANO"
+script = ExtResource("1_kkapl")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

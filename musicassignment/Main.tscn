@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctvwocrct6h0q"]
+[gd_scene load_steps=23 format=3 uid="uid://ctvwocrct6h0q"]
 
-[ext_resource type="Texture2D" uid="uid://3h1r05ksyxsx" path="res://icon.svg" id="1_uwqt4"]
+[ext_resource type="Texture2D" uid="uid://dpdqjptnku35v" path="res://Key.png" id="1_b2e1p"]
+[ext_resource type="Script" path="res://looper.gd" id="1_mxyaa"]
 [ext_resource type="Script" path="res://Scripts/Key.gd" id="2_d5etg"]
 [ext_resource type="AudioStream" uid="uid://u6c670bbli6c" path="res://4409__pinkyfinger__piano-notes-1-octave/68437__pinkyfinger__piano-a.wav" id="3_h6ohf"]
 [ext_resource type="AudioStream" uid="uid://cs33y45x7d4ay" path="res://4409__pinkyfinger__piano-notes-1-octave/68438__pinkyfinger__piano-b.wav" id="4_2px7y"]
@@ -14,141 +15,618 @@
 [ext_resource type="AudioStream" uid="uid://cap7mxu8nc887" path="res://4409__pinkyfinger__piano-notes-1-octave/68446__pinkyfinger__piano-f.wav" id="12_jahmu"]
 [ext_resource type="AudioStream" uid="uid://rxwg0leb33vn" path="res://4409__pinkyfinger__piano-notes-1-octave/68447__pinkyfinger__piano-g.wav" id="13_k1a68"]
 [ext_resource type="AudioStream" uid="uid://dg3ludmfeij4j" path="res://4409__pinkyfinger__piano-notes-1-octave/68448__pinkyfinger__piano-g.wav" id="14_vfgtb"]
+[ext_resource type="Texture2D" uid="uid://bpjbr3kwel3kx" path="res://IndicatorOff.png" id="16_pfrrn"]
+[ext_resource type="Texture2D" uid="uid://cccl5u5fexd6t" path="res://IndicatorPressed.png" id="17_ggx35"]
+[ext_resource type="Texture2D" uid="uid://bul6kkwtqw7nk" path="res://IndicatorPlaying.png" id="18_hfij8"]
+[ext_resource type="Script" path="res://VolumeSlider.gd" id="19_dffmg"]
+[ext_resource type="Script" path="res://PitchSlider.gd" id="20_1xypd"]
+[ext_resource type="Script" path="res://ReverbSlider.gd" id="21_2uoyy"]
+[ext_resource type="Script" path="res://TimeSlider.gd" id="22_6vkge"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(53.88, 457.76)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
-script = ExtResource("2_d5etg")
-sound = NodePath("../Piano/Piano2")
+[node name="Looper" type="Node2D" parent="." node_paths=PackedStringArray("sounds", "timer", "indicatorButtons")]
+position = Vector2(122, 517)
+scale = Vector2(1, 2)
+script = ExtResource("1_mxyaa")
+sounds = NodePath("../Piano")
+timer = NodePath("Timer")
+indicatorButtons = NodePath("../IndicatorButtons2")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(147, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Timer" type="Timer" parent="Looper"]
+wait_time = 0.5
+
+[node name="Keys" type="Node2D" parent="."]
+position = Vector2(-437.375, -326.865)
+scale = Vector2(1.45, 1.45)
+
+[node name="Sprite2D" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(446.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
+script = ExtResource("2_d5etg")
+sound = NodePath("../../Piano/Piano1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(540.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "s"
-sound = NodePath("../Piano/Piano2")
+sound = NodePath("../../Piano/Piano2")
 
-[node name="Sprite2D3" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(241, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D3" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(634.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "d"
-sound = NodePath("../Piano/Piano3")
+sound = NodePath("../../Piano/Piano3")
 
-[node name="Sprite2D4" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(335, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D4" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(728.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "f"
-sound = NodePath("../Piano/Piano4")
+sound = NodePath("../../Piano/Piano4")
 
-[node name="Sprite2D5" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(425, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D5" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(822.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "g"
-sound = NodePath("../Piano/Piano5")
+sound = NodePath("../../Piano/Piano5")
 
-[node name="Sprite2D6" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(517, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D6" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(916.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "h"
-sound = NodePath("../Piano/Piano6")
+sound = NodePath("../../Piano/Piano6")
 
-[node name="Sprite2D7" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(609, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D7" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(1010.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "j"
-sound = NodePath("../Piano/Piano7")
+sound = NodePath("../../Piano/Piano7")
 
-[node name="Sprite2D8" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(707, 460)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D8" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(1104.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "k"
-sound = NodePath("../Piano/Piano8")
+sound = NodePath("../../Piano/Piano8")
 
-[node name="Sprite2D9" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(803, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D9" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(1198.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "l"
-sound = NodePath("../Piano/Piano9")
+sound = NodePath("../../Piano/Piano9")
 
-[node name="Sprite2D10" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(903, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D10" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(1292.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = ";"
-sound = NodePath("../Piano/Piano10")
+sound = NodePath("../../Piano/Piano10")
 
-[node name="Sprite2D11" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(999, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D11" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(1386.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "'"
-sound = NodePath("../Piano/Piano11")
+sound = NodePath("../../Piano/Piano11")
 
-[node name="Sprite2D12" type="Sprite2D" parent="." node_paths=PackedStringArray("sound")]
-position = Vector2(1102, 458)
-scale = Vector2(0.67, 1.34)
-texture = ExtResource("1_uwqt4")
+[node name="Sprite2D12" type="Sprite2D" parent="Keys" node_paths=PackedStringArray("sound")]
+texture_filter = 1
+position = Vector2(1480.8, 780.2)
+scale = Vector2(5.85, 11.7)
+texture = ExtResource("1_b2e1p")
 script = ExtResource("2_d5etg")
 keybind = "#"
-sound = NodePath("../Piano/Piano12")
+sound = NodePath("../../Piano/Piano12")
 
 [node name="Piano" type="Node2D" parent="."]
+visible = false
 position = Vector2(122, 517)
 scale = Vector2(1, 2)
 
 [node name="Piano1" type="AudioStreamPlayer2D" parent="Piano"]
-stream = ExtResource("3_h6ohf")
+stream = ExtResource("13_k1a68")
 
 [node name="Piano2" type="AudioStreamPlayer2D" parent="Piano"]
 position = Vector2(2, -3.05176e-05)
-stream = ExtResource("4_2px7y")
+stream = ExtResource("3_h6ohf")
 
 [node name="Piano3" type="AudioStreamPlayer2D" parent="Piano"]
 stream = ExtResource("5_js5kx")
 
 [node name="Piano4" type="AudioStreamPlayer2D" parent="Piano"]
-stream = ExtResource("6_hwmtf")
+stream = ExtResource("4_2px7y")
 
 [node name="Piano5" type="AudioStreamPlayer2D" parent="Piano"]
 stream = ExtResource("7_dknxo")
 
 [node name="Piano6" type="AudioStreamPlayer2D" parent="Piano"]
-stream = ExtResource("8_tyku1")
+stream = ExtResource("6_hwmtf")
 
 [node name="Piano7" type="AudioStreamPlayer2D" parent="Piano"]
-stream = ExtResource("9_1dsug")
+stream = ExtResource("8_tyku1")
 
 [node name="Piano8" type="AudioStreamPlayer2D" parent="Piano"]
 stream = ExtResource("10_8fome")
 
 [node name="Piano9" type="AudioStreamPlayer2D" parent="Piano"]
-stream = ExtResource("11_q0c0b")
+stream = ExtResource("9_1dsug")
 
 [node name="Piano10" type="AudioStreamPlayer2D" parent="Piano"]
 stream = ExtResource("12_jahmu")
 
 [node name="Piano11" type="AudioStreamPlayer2D" parent="Piano"]
-stream = ExtResource("13_k1a68")
+stream = ExtResource("11_q0c0b")
 
 [node name="Piano12" type="AudioStreamPlayer2D" parent="Piano"]
 stream = ExtResource("14_vfgtb")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 812.0
+offset_top = 102.0
+offset_right = 1041.0
+offset_bottom = 299.0
+action_mode = 0
+text = "START/STOP
+SEQUENCER"
+
+[node name="IndicatorButtons" type="Node2D" parent="."]
+
+[node name="Indicator" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 156.0
+offset_top = 336.0
+offset_right = 166.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator2" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 290.0
+offset_top = 336.0
+offset_right = 300.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator3" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 427.0
+offset_top = 336.0
+offset_right = 437.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator4" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 561.0
+offset_top = 336.0
+offset_right = 571.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator5" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 699.0
+offset_top = 336.0
+offset_right = 709.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator6" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 833.0
+offset_top = 336.0
+offset_right = 843.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator7" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 970.0
+offset_top = 336.0
+offset_right = 980.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator8" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 1104.0
+offset_top = 336.0
+offset_right = 1114.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator9" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 1248.0
+offset_top = 336.0
+offset_right = 1258.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator10" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 1382.0
+offset_top = 336.0
+offset_right = 1392.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator11" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 1519.0
+offset_top = 336.0
+offset_right = 1529.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator12" type="TextureButton" parent="IndicatorButtons"]
+texture_filter = 1
+offset_left = 1653.0
+offset_top = 336.0
+offset_right = 1663.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+action_mode = 0
+texture_normal = ExtResource("16_pfrrn")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="IndicatorButtons2" type="Node2D" parent="."]
+
+[node name="Indicator" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 156.0
+offset_top = 336.0
+offset_right = 166.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator2" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 290.0
+offset_top = 336.0
+offset_right = 300.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator3" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 427.0
+offset_top = 336.0
+offset_right = 437.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator4" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 561.0
+offset_top = 336.0
+offset_right = 571.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator5" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 699.0
+offset_top = 336.0
+offset_right = 709.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator6" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 833.0
+offset_top = 336.0
+offset_right = 843.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator7" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 970.0
+offset_top = 336.0
+offset_right = 980.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator8" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 1104.0
+offset_top = 336.0
+offset_right = 1114.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator9" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 1248.0
+offset_top = 336.0
+offset_right = 1258.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator10" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 1382.0
+offset_top = 336.0
+offset_right = 1392.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator11" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 1519.0
+offset_top = 336.0
+offset_right = 1529.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Indicator12" type="TextureButton" parent="IndicatorButtons2"]
+visible = false
+texture_filter = 1
+offset_left = 1653.0
+offset_top = 336.0
+offset_right = 1663.0
+offset_bottom = 352.0
+scale = Vector2(11.28, 11.28)
+disabled = true
+action_mode = 0
+button_mask = 0
+texture_normal = ExtResource("18_hfij8")
+texture_pressed = ExtResource("17_ggx35")
+texture_hover = ExtResource("17_ggx35")
+stretch_mode = 6
+
+[node name="Sliders" type="Node2D" parent="."]
+position = Vector2(427, 117)
+
+[node name="HSlider" type="HSlider" parent="Sliders"]
+offset_right = 280.0
+offset_bottom = 38.0
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("19_dffmg")
+bus_name = "Master"
+
+[node name="HSlider2" type="HSlider" parent="Sliders"]
+offset_top = 30.0
+offset_right = 280.0
+offset_bottom = 68.0
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("20_1xypd")
+
+[node name="HSlider3" type="HSlider" parent="Sliders"]
+offset_top = 65.0
+offset_right = 280.0
+offset_bottom = 103.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("21_2uoyy")
+
+[node name="HSlider4" type="HSlider" parent="Sliders"]
+offset_top = 104.0
+offset_right = 280.0
+offset_bottom = 142.0
+max_value = 1.0
+step = 0.001
+value = 0.5
+script = ExtResource("22_6vkge")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sliders"]
+offset_left = -113.0
+offset_top = 9.0
+offset_right = -4.0
+offset_bottom = 31.0
+text = "VOLUME"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Sliders"]
+offset_left = -113.0
+offset_top = 40.0
+offset_right = -4.0
+offset_bottom = 62.0
+text = "PITCH"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Sliders"]
+offset_left = -113.0
+offset_top = 73.0
+offset_right = -4.0
+offset_bottom = 95.0
+text = "REVERB"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Sliders"]
+offset_left = -113.0
+offset_top = 113.0
+offset_right = -4.0
+offset_bottom = 135.0
+text = "TIME"
+
+[connection signal="timeout" from="Looper/Timer" to="Looper" method="_on_timer_timeout"]
+[connection signal="button_down" from="Button" to="Looper" method="_on_button_button_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator" to="Looper" method="_on_button0_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator2" to="Looper" method="_on_button1_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator3" to="Looper" method="_on_button2_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator4" to="Looper" method="_on_button3_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator5" to="Looper" method="_on_button4_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator6" to="Looper" method="_on_button5_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator7" to="Looper" method="_on_button6_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator8" to="Looper" method="_on_button7_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator9" to="Looper" method="_on_button8_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator10" to="Looper" method="_on_button9_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator11" to="Looper" method="_on_button10_down"]
+[connection signal="pressed" from="IndicatorButtons/Indicator12" to="Looper" method="_on_button11_down"]
