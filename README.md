@@ -13,4 +13,6 @@ How to use:
 - Press Start to being step sequencer.
 - Use mouse to change the pitch, volume, reverb and step sequencer speed values.
 
+https://youtu.be/umB54Ddv7lg
+
 https://github.com/user-attachments/assets/672abeee-d3f1-438a-aad1-44f7ee452a10
